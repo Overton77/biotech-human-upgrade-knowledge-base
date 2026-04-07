@@ -1,0 +1,80 @@
+---
+description: Human Upgrade episode research — episode-seeds folders, entities, tools, scope
+globs: human_upgrade_research/**/*
+alwaysApply: false
+---
+
+# Episode research workflow (Human Upgrade)
+
+Use this when building **research packs** from an episode markdown (e.g. `human_upgrade_research/markdown_output/episode-*.md`) or equivalent structured notes.
+
+## Where to write outputs
+
+1. Create a **new folder** under:
+   - `human_upgrade_research/markdown_output/episode-seeds/`
+2. **Name it logically**, e.g. `{mongoEpisodeIdOrStub}-{episode-slug}-{short-guest-or-brand}` (example: `69d2b7ac-1391-superstratum-seth-jones`). Use ASCII, hyphens; keep it unique and sortable.
+3. Store **all intermediate notes and final reports** in that folder (scrapes, bullet notes, and polished markdown).
+
+## Default file layout (adapt if needed)
+
+| File                            | Purpose                                                              |
+| ------------------------------- | -------------------------------------------------------------------- |
+| `README.md`                     | Scope, exclusions, tools used, DNS/access limitations                |
+| `00-research-summary.md`        | One-page synthesis for downstream docs / GraphQL                     |
+| `01-person-*.md`                | Guest(s) — roles, bio, public links                                  |
+| `02-business-*.md`              | Guest-affiliated business(es) — mission, structure caveats           |
+| `03-products-and-chemistry.md`  | Products/services; **compounds** when applicable (see below)         |
+| `04-case-studies-and-trials.md` | Company-hosted case studies + authoritative external trials/evidence |
+
+## Entities to capture (required coverage)
+
+1. **Guest(s)** — name, role, affiliation, credible bio bullets, primary links (site, social, podcast citations).
+2. **Business(es)** — entities **mainly affiliated with the guest** (employer, founded brand, parent co.). Exclude **sponsor-only** brands unless the user explicitly includes them; note exclusions in `README.md`.
+3. **Products sold by the business** — nameplate SKUs/services; how they map to the episode; URLs on the company site.
+4. **Compounds / active moieties** — when the business sells **oral supplements**, **topicals**, **injectables**, or other **biotech / formulated solutions**, list **ingredients, APIs, strains, or key actives** from labels, SDS, or official spec sheets. If the company sells **only non-ingestible** products (e.g. building chemistry), document **active chemistries** (e.g. HOCl, ClO₂) instead of “supplement compounds,” and say N/A for ingestibles.
+5. **Case studies and trials** — material **on the company website** (case studies, white papers, blog) **plus** **authoritative** external sources (peer-reviewed PubMed, ClinicalTrials.gov NCTs, regulator/industry filings). Label **company-asserted** vs **independent** clearly.
+
+## Research tools (use as fits the topic)
+
+- **Tavily** — web search and extract.
+- **Firecrawl** — scrape/map company sites, blogs, product pages.
+- **PubMed MCP** — papers for mechanisms, safety, ingredient evidence.
+- **ClinicalTrials.gov MCP** — trial metadata when relevant to guest claims or products.
+- **Built-in web search / browsing** — fill gaps, verify URLs, paywalled or dynamic pages.
+
+Prefer **primary** sources (company site, PubMed, registries) over random blogs; cite URLs in the seed files.
+
+## Scope rule
+
+Default research target: **guest + their affiliated business(es)**. If an episode lists **sponsors** not tied to the guest, **ask** whether to add a separate seed folder or section before deep research.
+
+## Quality bar
+
+**Good enough**: factual, cited, honest about gaps (e.g. site down, DNS failure). Not every episode needs exhaustive literature review—match depth to the episode’s claims.
+
+**The research files you create will be transformed into GraphQL mutation operations and seed the database.**
+
+## Case studies must be attached to the business (required)
+
+Research in `04-case-studies-and-trials.md` (and related notes) is not complete for database seeding until **every case study that belongs to a researched business is linked to that business** when the business is created or updated.
+
+- **Do not** create `CaseStudy` records in isolation and stop there: after `createCaseStudy` (or when reusing existing case study IDs), **attach** those studies to the business via **`createBusinessWithRelations`**, **`updateBusiness`**, or **`updateBusinessRelations`** using `caseStudyIds` and/or nested `caseStudiesNested` as appropriate.
+- Prefer **one coherent flow**: create or resolve case studies → create or update the business with `caseStudyIds` (existing IDs) or `caseStudiesNested` (inline create) on create; use `updateBusiness` / `updateBusinessRelations` with the same fields when the business already exists.
+- **Verify** with a `business(id)` query selecting `caseStudies { id title }` that the business exposes the expected studies.
+
+Relationship model (for mental model only): **`Business.caseStudyIds` is canonical**; `CaseStudy.businessIds` is maintained from that side. See `@api/.cursor/rules/non-user-model-relationships.mdc` for the general canonical/mirror pattern.
+
+## GraphQL reference (MCP server: `humanupgrade-graphql`)
+
+Use the **`humanupgrade-graphql`** MCP server—this is the named integration that provides the GraphQL tools. Call **`introspect`**, **`search`**, **`validate`**, and **`execute`** on that server so operations match the live schema. Compact map:
+
+| Goal | Operations / inputs |
+| ---- | ------------------- |
+| Create case studies | `mutation { createCaseStudy(input: CaseStudyCreateWithOptionalIdsInput!) }` — `title`, `summary!`, optional `url`, `sourceType`, `episodeIds`, `compoundIds` |
+| Update a case study | `mutation { updateCaseStudy(input: CaseStudyUpdateWithOptionalIdsInput!) }` — requires `id` |
+| Create business **with** case studies | `mutation { createBusinessWithRelations(input: BusinessCreateRelationsInput!) }` — include `caseStudyIds: [ID!]` and/or `caseStudiesNested: [BusinessCaseStudyNestedInput!]` |
+| Update business (scalar + ID arrays) | `mutation { updateBusiness(input: BusinessUpdateWithIdsInput!) }` — `id!`, optional `caseStudyIds: [ID!]` (merges with existing per API behavior) |
+| Update business (relations + nested creates) | `mutation { updateBusinessRelations(input: BusinessUpdateRelationFieldsInput!) }` — `id!`, optional `caseStudyIds`, `caseStudiesNested` |
+| Read back | `query { business(id: ID!) { id name caseStudies { id title summary url sourceType } } }`, `caseStudy(id: ID!)`, `caseStudies(limit, offset)` |
+
+**Mutations to remember:** `createCaseStudy`, `updateCaseStudy`, `createBusinessWithRelations`, `updateBusiness`, `updateBusinessRelations`.
