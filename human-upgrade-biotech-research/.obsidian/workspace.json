@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "04-entities/products/stemregen-mobilize.md",
+                "file": "missions/MISSION-001-stemregen-deep-dive/02-research/science/ESCM-science-review.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "stemregen-mobilize"
+              "title": "ESCM-science-review"
             }
           }
         ]
@@ -185,6 +185,32 @@
   },
   "active": "c70f1ef285ec82d0",
   "lastOpenFiles": [
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/studies/lang-2010-ab10-aad.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/studies/bagga-2018-emotional-brain-signatures.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/people/hannah-kleinfeld.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/people/anita-frauwallner.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/organizations/allergo-san-usa.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/organizations/institut-allergosan.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/03-syntheses/omni-biotics-synthesis.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/01-sources/markdown/research-hub.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/01-sources/markdown/product-catalog.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/01-sources/markdown/company-foundations.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/00-inbox/MISSION-002-omni-biotics-deep-dive.md",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/studies",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/products",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/people",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/organizations",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities/compounds",
+    "missions/MISSION-002-omni-biotics-deep-dive/01-sources/raw-json",
+    "missions/MISSION-002-omni-biotics-deep-dive/01-sources/media",
+    "missions/MISSION-002-omni-biotics-deep-dive/01-sources/markdown",
+    "missions/MISSION-002-omni-biotics-deep-dive/04-entities",
+    "missions/MISSION-002-omni-biotics-deep-dive/03-syntheses",
+    "missions/MISSION-001-stemregen-deep-dive/04-entities/products/stemregen-mobilize.md",
+    "missions/MISSION-001-stemregen-deep-dive/02-research/science/ESCM-science-review.md",
+    "missions/MISSION-001-stemregen-deep-dive/02-research/ingestion/graphql-ingestion-stemregen.md",
+    "missions/MISSION-001-stemregen-deep-dive/02-research/compounds/compound-analysis.md",
+    "missions/MISSION-001-stemregen-deep-dive/00-inbox/MISSION-001-stemregen-deep-dive.md",
     "04-entities/products/stemregen-release.md",
     "04-entities/products/stemregen-sport.md",
     "04-entities/studies/sbb-pe-rct-pmid-30787601.md",
@@ -195,27 +221,6 @@
     "02-research/graphql-ingestion-stemregen.md",
     "02-research/compound-analysis.md",
     "02-research/ESCM-science-review.md",
-    "04-entities/products/stemregen-mobilize.md",
-    "04-entities/products/stemregen-signal.md",
-    "02-research/NCT04515537-trial-analysis.md",
-    "04-entities/people/gitte-jensen.md",
-    "04-entities/people/christian-drapeau.md",
-    "00-inbox/MISSION-001-stemregen-deep-dive.md",
-    "00-inbox/INBOX.md",
-    "04-entities/studies",
-    "04-entities/compounds",
-    "04-entities/products",
-    "04-entities/organizations",
-    "04-entities/people",
-    "01-sources/raw-json",
-    "01-sources/markdown",
-    "06-prompts-rules",
-    "05-ontology",
-    "04-entities",
-    "Biotech Note Protocol.md",
-    "Human Upgrade Research Hub.md",
-    "2026-04-07.md",
-    "Untitled.canvas",
-    "Welcome.md"
+    "Untitled.canvas"
   ]
 }

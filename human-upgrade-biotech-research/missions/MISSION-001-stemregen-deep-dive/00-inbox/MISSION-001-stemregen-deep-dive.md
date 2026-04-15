@@ -15,6 +15,7 @@ Conduct a two-stage deep research investigation into the company behind STEMREGE
 
 ## Starter Material
 
+- Mission folder: `missions/MISSION-001-stemregen-deep-dive/`
 - Seed folder: `human_upgrade_seeds/episode-seeds/69d2bb81-1374-stemregen-drapeau/`
 - Episode: The Human Upgrade #1374 — Christian Drapeau on STEMREGEN
 
@@ -33,7 +34,7 @@ Conduct a two-stage deep research investigation into the company behind STEMREGE
 
 - [ ] Full product line catalog with ingredient breakdowns
 - [ ] Compound-level research for key actives (AFA, SBB-PE, fucoidan, beta-glucan, etc.)
-- [x] Trial breakdown — NCT04515537 (AFA + SVF in heart failure) → `02-research/NCT04515537-trial-analysis.md`
+- [x] Trial breakdown — NCT04515537 (AFA + SVF in heart failure) → `02-research/trials/NCT04515537-trial-analysis.md`
 - [ ] Trial breakdown — SBB-PE RCT (PMID 30787601)
 - [ ] Science of endogenous stem cell mobilization (ESCM)
 - [ ] Comparison: botanical ESCM vs pharmacologic mobilizers (G-CSF, plerixafor)
@@ -49,10 +50,10 @@ Conduct a two-stage deep research investigation into the company behind STEMREGE
 
 ## Deliverables
 
-1. Entity notes in `04-entities/`
-2. Research notes in `02-research/`
-3. Source captures in `01-sources/`
-4. Synthesis documents in `03-syntheses/`
+1. Entity notes in this mission folder under `04-entities/`
+2. Research notes in this mission folder under `02-research/`
+3. Source captures in this mission folder under `01-sources/`
+4. Synthesis documents in this mission folder under `03-syntheses/`
 5. GraphQL-ready structured data for database ingestion
 
 ## Status Log

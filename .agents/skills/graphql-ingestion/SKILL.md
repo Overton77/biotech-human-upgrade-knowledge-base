@@ -1,194 +1,149 @@
 ---
 name: graphql-ingestion
 description: |
-  Ingest research entities into the Human Upgrade PostgreSQL database via the humanupgrade-graphql MCP server. Create and connect persons, organizations, products, compounds, case studies, media, and other entities. Use when the user says "ingest", "seed database", "create in database", "push to GraphQL", "connect entities", or when research is mature enough for structured database storage.
+  Ingests research into the Human Upgrade database via the humanupgrade-graphql MCP server. Emphasizes update mutations (where, data, embedding with EmbeddingWriteMode AUTO), relation wiring via connect, connectOrCreate, create, set, disconnect, SearchMode NONE pre-checks, and canonical schema/operations paths. Use when the user says ingest, seed, push to GraphQL, attach relationships, or provides mission files for database ingestion.
 ---
 
-# GraphQL Database Ingestion
+# GraphQL database ingestion
 
-## MCP Server
+## Canonical sources (read these)
 
-**Name:** `humanupgrade-graphql` (project-0-humanupgradeapp-humanupgrade-graphql)
+| Resource | Path |
+|----------|------|
+| **Full schema** | [`humanupgradeapi/src/graphql/schema.graphql`](../../../../humanupgradeapi/src/graphql/schema.graphql) |
+| **Saved operations** (queries/mutations as the API expects them) | [`humanupgradeapi/src/graphql/operations/`](../../../../humanupgradeapi/src/graphql/operations/) — subfolders: `organizations/`, `products/`, `caseStudies/`, `episodes/`, `claims/`, `persons/`, `compounds/`, `labTests/`, `biomarkers/`, `media/`, `podcasts/`, etc. |
 
-This MCP server exposes typed tools for every CRUD operation. Use the tool names directly — they map to GraphQL mutations.
+Use **`introspect`** on `Mutation` / `Query` (humanupgrade-graphql MCP) to confirm signatures after schema changes. Prefer **`validate`** then **`execute`** for one-off operations. Example on-disk mutations: `operations/caseStudies/UpdateCaseStudy.graphql` shows the exact **`where` / `data` / `embedding`** variable shape.
 
-## Entity Types & Tools
+---
 
-| Entity | Create | Update | Delete | Get One | Get Many |
-|--------|--------|--------|--------|---------|----------|
-| Person | `CreatePerson` | `UpdatePerson` | `DeletePerson` | `GetPerson` | `GetPersons` |
-| Organization | `CreateOrgadc96211` | `UpdateOrgac24098b` | `DeleteOrgaa7ea9fb` | `GetOrganization` | `GetOrganizations` |
-| Product | `CreateProduct` | `UpdateProduct` | `DeleteProduct` | `GetProduct` | `GetProducts` |
-| Compound | `CreateCompound` | `UpdateCompound` | `DeleteCompound` | `GetCompound` | `GetCompounds` |
-| CaseStudy | `CreateCaseStudy` | `UpdateCaseStudy` | `DeleteCaseStudy` | `GetCaseStudy` | `GetCaseStudies` |
-| Media | `CreateMedia` | `UpdateMedia` | `DeleteMedia` | `GetMedia` | — |
-| Episode | `CreateEpisode` | `UpdateEpisode` | `DeleteEpisode` | `GetEpisode` | `GetEpisodes` |
-| Claim | `CreateClaim` | `UpdateClaim` | `DeleteClaim` | `GetClaim` | `GetClaims` |
-| Podcast | `CreatePodcast` | `UpdatePodcast` | `DeletePodcast` | `GetPodcast` | `GetPodcasts` |
-| LabTest | `CreateLabTest` | `UpdateLabTest` | `DeleteLabTest` | `GetLabTest` | `GetLabTests` |
-| Biomarker | `CreateBiomarker` | `UpdateBiomarker` | `DeleteBiomarker` | `GetBiomarker` | `GetBiomarkers` |
+## Update mutations (primary place for relationships)
 
-Use `introspect` and `search` tools to explore the schema. Use `validate` before `execute` for raw queries.
-
-## Ingestion Workflow
-
-### Step 1: Create Base Entities (no relations)
-
-Create entities in dependency order — entities that others reference first:
-
-1. **Persons** — no dependencies
-2. **Organizations** — no dependencies
-3. **Compounds** — no dependencies
-4. **Products** — pass `organizationId` at creation time if known
-5. **CaseStudies** — no dependencies
-6. **Episodes** — requires `podcastId`
-
-### Step 2: Connect Relations (update mutations)
-
-After all entities exist, wire up many-to-many and ownership relations:
-
-**Organization → People:**
-```json
-UpdateOrganization(where: {slug: "org-slug"}, data: {
-  owners: { connect: [{slug: "person-slug"}] },
-  executives: { connect: [{slug: "person-slug"}] }
-})
-```
-
-**Product → Compounds:**
-```json
-UpdateProduct(where: {slug: "product-slug"}, data: {
-  containsCompounds: { connect: [{slug: "compound-1"}, {slug: "compound-2"}] }
-})
-```
-
-**CaseStudy → Organizations:**
-```json
-UpdateCaseStudy(where: {slug: "study-slug"}, data: {
-  referencedByOrganizations: { connect: [{slug: "org-slug"}] },
-  businessSponsors: { connect: [{slug: "sponsor-slug"}] }
-})
-```
-
-**Episode → Guests/Sponsors:**
-```json
-UpdateEpisode(where: {slug: "episode-slug"}, data: {
-  guests: { connect: [{slug: "person-slug"}] },
-  sponsorOrganizations: { connect: [{slug: "org-slug"}] }
-})
-```
-
-### Step 3: Add Media
-
-Create media records linked to entities via their ID fields:
-
-```json
-CreateMedia(data: {
-  url: "https://...",
-  type: "IMAGE",  // IMAGE | VIDEO | AUDIO | DOCUMENT | LINK | OTHER
-  title: "Description",
-  altText: "Accessibility text",
-  sortOrder: 0,
-  personId: "cuid...",       // OR
-  organizationId: "cuid...", // OR
-  productId: "cuid...",      // OR
-  compoundId: "cuid...",     // OR
-  caseStudyId: "cuid..."     // etc — one FK per media record
-})
-```
-
-## Relation Operation Syntax
-
-All many-to-many relations use `ToManyRelationOperationInput`:
-
-```json
-{
-  "connect": [{"slug": "a"}, {"slug": "b"}],   // Add relations
-  "disconnect": [{"slug": "c"}],                // Remove relations
-  "set": [{"slug": "a"}, {"slug": "b"}]         // Replace all relations
-}
-```
-
-All to-one relations use `ToOneRelationOperationInput`:
-
-```json
-{
-  "connect": {"slug": "org-slug"},   // Set relation
-  "disconnect": true                  // Clear relation
-}
-```
-
-Nullable scalar fields use `StringNullableOperationInput`:
-
-```json
-{ "set": "new value" }   // Set value
-{ "clear": true }        // Set to null
-```
-
-String arrays use `StringListOperationInput`:
-
-```json
-{ "set": ["a", "b"] }        // Replace entire array
-{ "add": ["c"] }             // Append
-{ "remove": ["a"] }          // Remove
-```
-
-## Key Relationships (Prisma Schema)
-
-```
-Organization ──< Product (organizationId FK)
-Product >──< Compound (implicit many-to-many: containsCompounds/products)
-Organization >──< Person (owners, executives — two separate relations)
-Organization >──< CaseStudy (referencedCaseStudies, businessSponsoredCases)
-Episode >──< Person (guests)
-Episode >──< Organization (sponsorOrganizations)
-Episode ──< Claim (episodeId FK)
-Claim >── Person (speaker — optional to-one)
-Product ──< LabTest (productId FK)
-LabTest >──< Biomarker (testsBiomarkers)
-Compound >──< Biomarker (CompoundBiomarkerAssociations)
-Media → any entity (one FK field per media record)
-```
-
-## Verification Query
-
-After ingestion, verify connections with a raw GraphQL query:
+Every **entity update** follows the same GraphQL shape (verified against live schema introspection):
 
 ```graphql
-query {
-  organizations {
-    name
-    owners { fullName }
-    executives { fullName }
-    products {
-      name
-      containsCompounds { name canonicalName }
-    }
-    referencedCaseStudies { title doi }
-    businessSponsoredCases { title }
-  }
-}
+updateExample(
+  where: ExampleWhereUniqueInput!
+  data: ExampleUpdateInput!
+  embedding: EmbeddingWriteOptionsInput   # optional; see below
+): Example!
 ```
 
-Use the `execute` tool to run raw queries.
+- **`where`** — Identifies the row: usually `{ slug: "…" }` or `{ id: "…" }` per `*WhereUniqueInput` (`ClaimWhereUniqueInput` is `{ id: ID! }` only).
+- **`data`** — Scalar patches **and** nested relation operations. **This is where relationships are attached or removed:** `connect`, `connectOrCreate`, `create`, `set`, `disconnect` on the fields defined on that type’s `*UpdateInput` (e.g. `OrganizationUpdateInput.owners`, `ProductUpdateInput.containsCompounds`, `CaseStudyUpdateInput.referencedByOrganizations`).
+- **`embedding`** — Controls embedding writes for that mutation. Type: `EmbeddingWriteOptionsInput` → `{ mode: EmbeddingWriteMode }`.
 
-## Data Quality Rules
+### `EmbeddingWriteMode` (usually AUTO)
 
-1. **Slugs must be unique** per entity type — use kebab-case
-2. **Always check if entity exists** before creating (use Get tools) to avoid duplicates
-3. **Create before connecting** — all referenced entities must exist before relation operations
-4. **One media record per asset** — link to exactly one entity via its FK field
-5. **Preserve provenance** — include sourceUrl, doi, journal on CaseStudies
-6. **Use tags consistently** — lowercase, hyphenated, domain-relevant
+Defined in the schema (`EmbeddingWriteMode` enum). **`embedding`’s `mode` defaults to `AUTO`** if the argument is omitted.
 
-## Ingestion from Vault Notes
+| Mode | When to use |
+|------|----------------|
+| **AUTO** | **Default for ingestion.** Let the API decide when to (re)generate embeddings after this write. Omit `embedding` or pass `{ "mode": "AUTO" }`. |
+| **SKIP** | Do not write embeddings for this mutation (batch or maintenance scenarios). |
+| **FORCE** | Recompute embeddings for affected content after this update. |
 
-When ingesting from the Obsidian vault (`obsidian-vault-research` skill):
+**Practice:** For normal ingest/connect flows, **omit `embedding` or set `mode: AUTO`**. Do not invent other embedding shapes.
 
-1. Read entity notes from `04-entities/` — frontmatter has slug, name, type
-2. Read ingestion data from `02-research/graphql-ingestion-*.md` — has JSON payloads
-3. Create entities using the JSON payloads
-4. Connect relations using slugs from the vault notes
-5. Add media from scraped image URLs
-6. Verify with a query
-7. Update the vault ingestion note with completion status
+### Relation ops inside `data`
+
+Relation fields use the shared inputs from the schema (e.g. `PersonToManyRelationUpdateInput`, `OrganizationToManyRelationUpdateInput`, `CompoundToManyRelationUpdateInput`, `MediaToManyRelationUpdateInput`, `PersonToOneRelationUpdateInput`).
+
+**To-many:** `set`, `connect`, `disconnect`, `create`, `connectOrCreate` (see schema for each).
+
+**To-one:** `connect`, `disconnect: true`, `create`, `connectOrCreate`.
+
+**Scalars / lists:** `StringNullableOperationInput` (`set` / `clear`), `StringListOperationInput` (`set` / `add` / `remove`), etc.
+
+---
+
+## Create mutations
+
+Shape (entities that support embeddings):
+
+```graphql
+createExample(
+  data: ExampleCreateInput!
+  embedding: EmbeddingWriteOptionsInput
+): Example!
+```
+
+- **`data`** — Model fields and direct FKs only (e.g. `organizationId` on `ProductCreateInput`, `podcastId` on `EpisodeCreateInput`). No nested relation graphs on create inputs.
+- **`embedding`** — Same semantics as updates; **default / usual choice is AUTO or omitted.**
+
+**Exception — Media:** `createMedia(data: MediaCreateInput!): Media!` has **no** `embedding` argument.
+
+---
+
+## Mutations without `embedding`
+
+| Operation | Arguments |
+|-----------|-----------|
+| **`createMedia`** | `data` only |
+| **`updateMedia`** | `where`, `data` only |
+| **`deleteMedia`** | `where` only |
+| **All `delete*`** | `where` only |
+
+For these, there is no `EmbeddingWriteMode` on the mutation itself.
+
+---
+
+## Where to update which relationship
+
+| Intent | Mutation | Relation fields in `data` (see schema) |
+|--------|----------|----------------------------------------|
+| Organization ↔ people | `updateOrganization` | `owners`, `executives` |
+| Organization ↔ products | `updateProduct` (or `organizationId` / `createProduct`) | `organization` (to-one) on **product** |
+| Organization ↔ case studies | `updateCaseStudy` | `referencedByOrganizations`, `businessSponsors` |
+| Product ↔ compounds | `updateProduct` | `containsCompounds` |
+| Lab test ↔ biomarkers | `updateLabTest` | `testsBiomarkers` |
+| Lab test ↔ product / org | `updateLabTest` | `product`, `organization` |
+| Episode ↔ people | `updateEpisode` | `guests` |
+| Episode ↔ organizations | `updateEpisode` | `sponsorOrganizations` |
+| Claim ↔ speaker | `updateClaim` | `speaker` (to-one) |
+| Media ↔ parent | Parent’s `update*` | `media` on org/product/person/episode/claim/case study/podcast/etc., **or** `CreateMedia` with a single parent FK |
+
+`OrganizationUpdateInput` does **not** include `products` or `caseStudies` — link from **product** and **case study** updates (or FKs on create) as above.
+
+**Compound ↔ biomarker** edges are not on `CompoundUpdateInput` / `BiomarkerUpdateInput`; use **lab test** and **product** relation fields as appropriate.
+
+---
+
+## Discovery before ingest (`SearchMode`)
+
+Plural queries take `input` with `mode: SearchMode` (`NONE` | `LEXICAL` | `SEMANTIC` | `HYBRID`).
+
+- **`mode: NONE`** — Filter/list without search scoring; use **before ingest** to see what exists (`limit` / `offset` + type-specific filters).
+- Other modes — Supply `query` for text search as needed.
+
+Singular queries use `id` / `slug` per `*WhereUniqueInput` (not arbitrary `name` uniqueness).
+
+---
+
+## Media
+
+- **`CreateMedia`:** Set at most one of `podcastId`, `episodeId`, `claimId`, `personId`, `organizationId`, `productId`, `compoundId`, `labTestId`, `biomarkerId`, `caseStudyId`.
+- **`UpdateMedia`:** Metadata only in `MediaUpdateInput` (no parent FKs). Re-parent via parent **`media`** relation ops or delete + recreate.
+
+---
+
+## MCP tools
+
+| Tool | Role |
+|------|------|
+| `introspect` | Types (`Query`, `Mutation`, `*UpdateInput`, …) |
+| `search` | Find type names by keyword |
+| `validate` / `execute` | Ad-hoc operations |
+| `Create*`, `Update*`, `Get*`, … | Typed wrappers matching operations under `operations/` |
+
+---
+
+## Ingestion order (summary)
+
+1. Plural **`mode: NONE`** (or singular by **slug**) to dedupe.
+2. **`create*`** base rows (`embedding` AUTO or omitted).
+3. **`update*`** with **`data`** relation ops (`embedding` AUTO or omitted); use **`where`** for stable ids/slugs.
+4. Media: **`CreateMedia`** or parent **`media`** nested in **`update*`**.
+5. Verify with **`execute`** queries; match field selection to what you need.
+
+Mission-specific files and paths the user provides override generic folder guesses.

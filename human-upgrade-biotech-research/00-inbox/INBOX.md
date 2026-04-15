@@ -6,11 +6,16 @@ tags:
 
 # Inbox
 
-Drop quick captures here. Promote notes into `01-sources`–`06-prompts-rules` when they have a clear role.
+Drop quick captures here. Promote active mission work into `missions/MISSION-NNN-slug/` containers once the mission has a clear scope. Keep this root inbox for global intake, routing, and vault-level meta notes.
 
 ## Starter instructions
 
 _Add links to vault notes or bullets for onboarding (to be filled)._
+
+## Mission Index
+
+- [[MISSION-001-stemregen-deep-dive|MISSION-001: STEMREGEN / Kalyagen]]
+- [[MISSION-002-omni-biotics-deep-dive|MISSION-002: OMNi-BiOTiC]]
 
 ## External content (outside this vault)
 
