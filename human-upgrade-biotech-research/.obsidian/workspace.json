@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "04-entities/organizations/stemregen-kalyagen.md",
+                "file": "04-entities/products/stemregen-mobilize.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "stemregen-kalyagen"
+              "title": "stemregen-mobilize"
             }
           }
         ]
@@ -185,20 +185,20 @@
   },
   "active": "c70f1ef285ec82d0",
   "lastOpenFiles": [
-    "02-research/graphql-ingestion-stemregen.md",
+    "04-entities/products/stemregen-release.md",
+    "04-entities/products/stemregen-sport.md",
+    "04-entities/studies/sbb-pe-rct-pmid-30787601.md",
+    "04-entities/studies/nct04515537-afa-svf-hf.md",
     "03-syntheses/stemregen-kalyagen-synthesis.md",
+    "04-entities/organizations/stemtech-international.md",
+    "04-entities/organizations/stemregen-kalyagen.md",
+    "02-research/graphql-ingestion-stemregen.md",
     "02-research/compound-analysis.md",
     "02-research/ESCM-science-review.md",
-    "04-entities/studies/nct04515537-afa-svf-hf.md",
-    "04-entities/studies/sbb-pe-rct-pmid-30787601.md",
-    "04-entities/products/stemregen-sport.md",
     "04-entities/products/stemregen-mobilize.md",
     "04-entities/products/stemregen-signal.md",
     "02-research/NCT04515537-trial-analysis.md",
-    "04-entities/products/stemregen-release.md",
     "04-entities/people/gitte-jensen.md",
-    "04-entities/organizations/stemtech-international.md",
-    "04-entities/organizations/stemregen-kalyagen.md",
     "04-entities/people/christian-drapeau.md",
     "00-inbox/MISSION-001-stemregen-deep-dive.md",
     "00-inbox/INBOX.md",

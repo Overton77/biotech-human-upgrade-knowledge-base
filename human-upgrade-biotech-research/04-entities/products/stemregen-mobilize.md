@@ -29,22 +29,22 @@ Vascular support product in the [[stemregen-kalyagen|STEMREGEN]] protocol. Posit
 
 ## Ingredients (14 actives)
 
-| Ingredient | Category | Key Compound |
-|-----------|----------|-------------|
-| **Fibrinolytic enzymes** | Blood fluidity | [[nattokinase|Nattokinase]] class |
-| **N-Acetyl-Cysteine (NAC)** | Antioxidant | Glutathione precursor |
-| **Olive extract** (25% hydroxytyrosol) | Endothelial | [[hydroxytyrosol|Hydroxytyrosol]] |
-| **Rhus coriaria** | Antioxidant | High ORAC polyphenols |
-| **Sophora japonica** | Capillary integrity | Rutin, hesperidin, quercetin |
-| **Gotu kola** (90% triterpenoids) | Capillary strength | Asiaticoside, madecassoside |
-| **Pomegranate** (40% ellagic acid) | Glycocalyx | Ellagitannins |
-| **Ginkgo biloba** | Circulation | Ginkgolides, bilobalide |
-| **Ascophyllum nodosum** (70% fucoidan) | Glycocalyx | [[fucoidan|Fucoidan]] |
-| **StemAFA™** | Stem cell mobilization | AFA extract |
-| **Glucosamine sulfate** | Glycocalyx | GAG precursor |
-| **N-Acetyl-D-Glucosamine** | Capillary health | GAG precursor |
-| **Beetroot** (10% nitrate) | Nitric oxide | Dietary nitrate |
-| **L-Citrulline** | Nitric oxide | NO precursor |
+| Ingredient                             | Category               | Key Compound                 |                     |
+| -------------------------------------- | ---------------------- | ---------------------------- | ------------------- |
+| **Fibrinolytic enzymes**               | Blood fluidity         | [[nattokinase                | Nattokinase]] class |
+| **N-Acetyl-Cysteine (NAC)**            | Antioxidant            | Glutathione precursor        |                     |
+| **Olive extract** (25% hydroxytyrosol) | Endothelial            | [[hydroxytyrosol             | Hydroxytyrosol]]    |
+| **Rhus coriaria**                      | Antioxidant            | High ORAC polyphenols        |                     |
+| **Sophora japonica**                   | Capillary integrity    | Rutin, hesperidin, quercetin |                     |
+| **Gotu kola** (90% triterpenoids)      | Capillary strength     | Asiaticoside, madecassoside  |                     |
+| **Pomegranate** (40% ellagic acid)     | Glycocalyx             | Ellagitannins                |                     |
+| **Ginkgo biloba**                      | Circulation            | Ginkgolides, bilobalide      |                     |
+| **Ascophyllum nodosum** (70% fucoidan) | Glycocalyx             | [[fucoidan                   | Fucoidan]]          |
+| **StemAFA™**                           | Stem cell mobilization | AFA extract                  |                     |
+| **Glucosamine sulfate**                | Glycocalyx             | GAG precursor                |                     |
+| **N-Acetyl-D-Glucosamine**             | Capillary health       | GAG precursor                |                     |
+| **Beetroot** (10% nitrate)             | Nitric oxide           | Dietary nitrate              |                     |
+| **L-Citrulline**                       | Nitric oxide           | NO precursor                 |                     |
 
 ## Evidence Assessment
 
