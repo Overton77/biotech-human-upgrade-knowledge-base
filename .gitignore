@@ -1,3 +1,7 @@
 **/human_upgrade_seeds/**   
 
-batch/
+batch/ 
+
+**/.env**  
+
+**/.agent.env**
