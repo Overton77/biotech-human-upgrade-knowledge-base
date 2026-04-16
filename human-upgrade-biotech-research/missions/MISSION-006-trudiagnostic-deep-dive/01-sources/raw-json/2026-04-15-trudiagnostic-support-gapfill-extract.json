@@ -1,0 +1,15 @@
+{
+  "results": [],
+  "failed_results": [
+    {
+      "url": "https://trudiagnostic.my.site.com/support/s/article/What-biomarkers-are-analyzed-in-the-TruAge-test",
+      "error": "Failed to fetch url"
+    },
+    {
+      "url": "https://trudiagnostic.my.site.com/support/s/article/What-s-the-difference-between-TruAge-and-TruHealth",
+      "error": "Failed to fetch url"
+    }
+  ],
+  "response_time": 12.37,
+  "request_id": "99d731a4-d877-4652-b8a2-47f654c61f90"
+}

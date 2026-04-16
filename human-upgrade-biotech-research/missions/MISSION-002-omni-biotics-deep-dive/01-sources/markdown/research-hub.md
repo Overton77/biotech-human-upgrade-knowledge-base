@@ -29,6 +29,7 @@ confidence: high
 - The company frames its evidence as final-formulation studies where possible, not just ingredient or strain-level literature.
 - The official research pages often restate the European formulation name, then note that the U.S. product is identical.
 - The site separates education content from direct product-linked studies and reviews.
+- The best-supported OMNi-BiOTiC U.S. products in this mission are `Stress Release`, `Hetox`, `Panda`, `Power`, `Caricol`, and `Caricol Gastro`.
 
 ## Key Product-Linked Studies
 
@@ -38,6 +39,7 @@ confidence: high
 | Stress Release | `Influence of 4-week multi-strain probiotic administration on resting state functional connectivity in healthy volunteers` | 2019 | Final-formulation RCT; brain connectivity |
 | Stress Release | `Effects of an oral synbiotic on the gastrointestinal immune system and microbiota in patients with diarrhea-predominant irritable bowel syndrome` | 2019 | Company-cited observational/clinical evidence |
 | Stress Release | `PROVIT Study... Major Depressive Disorder` | 2022 | Company-referenced RCT in official research hub |
+| Stress Release | `Probiotic Supplementation in Patients with Alzheimer's Dementia - An Explorative Intervention Study` | 2018 | Explorative human study; dementia / gut-brain |
 | AB 10 | `Use of a multi-species probiotic for the prevention of antibiotic associated diarrhea` | 2010 | Final-formulation / company-linked AAD evidence |
 | AB 10 | `Probiotics in Clostridium difficile infection: reviewing the need for a multistrain probiotic` | 2013 | Company-cited review / chart review |
 | AB 10 | `Effect of a Multispecies Probiotic on Intestinal and Skin Colonization...` | 2020 | Final-formulation pilot study |
@@ -58,6 +60,21 @@ confidence: high
 | Caricol Gastro | `Supplementation of Caricol®-Gastro reduces chronic gastritis disease associated pain` | 2018 | Final-formulation clinical trial |
 | Caricol Gastro | `Investigations to evaluate gastric mucoadhesion...` | 2020 | In-vitro / mechanism study |
 
+## PubMed-Verified High-Signal Matches
+
+| Product | PMID | Study | Notes |
+|---|---:|---|---|
+| Stress Release | `29723105` | Probiotics drive gut microbiome triggering emotional brain signatures | Healthy-volunteer gut-brain RCT |
+| Stress Release | `29850990` | Influence of 4-week multi-strain probiotic administration on resting-state functional connectivity | MRI connectivity RCT |
+| Stress Release | `30251020` | Effects of an oral synbiotic in IBS-D | IBS-D synbiotic intervention |
+| Stress Release | `30101706` | Probiotic supplementation in Alzheimer's dementia | Explorative dementia intervention |
+| Panda | `19392993` | PandA eczema study | Prenatal/postnatal eczema-prevention RCT |
+| Hetox-linked | `31729622` | Multispecies synbiotic in diabesity | RCT; formulation equivalence should be stated carefully |
+| Hetox-linked | `29228964` | Multi-strain probiotic in medication-naive T2DM | RCT; registry-linked |
+| Power | `27886064` | Probiotic supplementation in trained athletes | RCT; URTI / tryptophan-kynurenine |
+| Caricol | `23524622` | Papaya preparation in digestive disorders | Human digestive-disorder RCT |
+| Caricol Gastro | `29604620` | Caricol-Gastro reduces chronic gastritis pain | RCT |
+
 ## Public Trial Registrations Surfaced in Search
 
 - `NCT06888518` - multistrain probiotics for bacterial vaginosis; sponsor: Institut AllergoSan Pharma GmbH
@@ -66,9 +83,12 @@ confidence: high
 - `NCT03705442` - probiotics as adjuvant therapy in metastatic colorectal cancer; intervention list includes `Omni-Biotic 10`
 - `NCT06825117` - probiotics for kidney transplantation; collaborator/intervention linked to OMNi-BiOTiC
 - `NCT05879393` - OMNi-BiOTiC Active upper respiratory disease trial (brand-associated but not a current U.S. retail product on the live catalog)
+- `NCT03847714` - Probiotics in Dementia; intervention includes `Omni-Biotic Stress Repair`
+- `NCT01765517` - endotoxin / T2DM probiotic trial; registry-linked to one of the Hetox-like metabolic evidence lines
 
 ## Notes
 
 - The official research hub is one of the strongest evidence anchors for this mission because it explicitly ties each study to a product line.
 - Where the company frames a study as "final formulation," treat that as formulation-level evidence, not just ingredient-level evidence.
 - Some trial registrations are related to the wider brand ecosystem rather than the current U.S. catalog, so they should be labeled carefully in synthesis notes.
+- For this mission, the main cleanup task is distinguishing `PubMed-verified`, `ClinicalTrials.gov-verified`, and `company-page-only` evidence objects.

@@ -4,6 +4,8 @@ status: complete
 created: 2026-04-07
 episode: "1374"
 episode_id: "69d2bb81623ff62849cb72ff"
+guest_speaker_full_name: "Christian Drapeau"
+seed_folder: "curated_content/human_upgrade/episode-seeds/69d2bb81-1374-stemregen-drapeau"
 tags: [mission, stemregen, kalyagen, stem-cells, supplements]
 ---
 
@@ -15,8 +17,9 @@ Conduct a two-stage deep research investigation into the company behind STEMREGE
 
 ## Starter Material
 
+- **Episode guest (full name):** Christian Drapeau — Founder & CSO, STEMREGEN (from seed `curated_content/human_upgrade/episode-seeds/69d2bb81-1374-stemregen-drapeau/episode-69d2bb81623ff62849cb72ff.md`).
 - Mission folder: `missions/MISSION-001-stemregen-deep-dive/`
-- Seed folder: `human_upgrade_seeds/episode-seeds/69d2bb81-1374-stemregen-drapeau/`
+- Seed folder: `curated_content/human_upgrade/episode-seeds/69d2bb81-1374-stemregen-drapeau/`
 - Episode: The Human Upgrade #1374 — Christian Drapeau on STEMREGEN
 
 ## Stage 1: Company Fundamentals

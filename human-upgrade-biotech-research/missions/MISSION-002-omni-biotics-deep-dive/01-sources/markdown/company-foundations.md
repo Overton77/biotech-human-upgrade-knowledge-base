@@ -24,13 +24,34 @@ confidence: high
 - Institut AllergoSan is based in Graz, Austria and was founded in January 1991.
 - The company positions itself as a research and development organization focused on probiotics, plant extracts, minerals, and microbiome-centered natural medicine.
 - The Austrian parent company presents itself as a family company with long-term scientific collaboration across medicine, biology, pharmacology, and biochemistry.
-- The OMNi-BiOTiC U.S. site identifies AllergoSan USA leadership as Klaus Kleinfeld (CEO), Hannah Kleinfeld (COO), and Lena Kleinfeld (CMO).
-- The U.S. site also lists a named scientific advisory board.
+- The OMNi-BiOTiC U.S. site says `AllergoSan USA` launched in `2019`.
+- The U.S. site identifies AllergoSan USA leadership as Klaus Kleinfeld (CEO), Hannah Kleinfeld (COO), and Lena Kleinfeld (CMO).
+- The U.S. site also lists a named scientific advisory board and explicitly frames the U.S. operation as a family-led New York team.
 
 ## Parent-Company Leadership
 
 - Anita Frauwallner is the founder and long-standing leader of Institut AllergoSan.
 - Bernd Assinger is identified by the company and secondary sources as part of the management / executive leadership.
+
+## U.S. Leadership Context
+
+- Klaus Kleinfeld is presented as the CEO of AllergoSan USA and is described as the executive who helped found the U.S. business with his daughters after personal experience with the products.
+- Hannah Kleinfeld is presented as COO and described as having Yale, Harvard Business School, McKinsey, and Boston Medical Center experience.
+- Lena Kleinfeld is presented as CMO and described as leading communications and marketing.
+
+## Scientific Advisory Context
+
+The official U.S. site surfaces a named advisory ecosystem that includes:
+
+- Brook Schales, ND, LAc
+- Andrea Girman, MD, MPH
+- David Scheiderer, MD, MBA, DFAPA
+- Gerald Simons, PA-C
+- Leah Linder, ND
+- Nicole Cain, ND, MA
+- Sammie Mancine, RN, BCHHP
+
+These are best treated as advisory or expert-network figures unless a more formal corporate-board structure is documented later.
 
 ## Scientific / Research Context
 
@@ -48,9 +69,19 @@ confidence: high
 
 - Growjo estimated annual revenue: about `$53.5M` and about `266` employees.
 - ZoomInfo estimated annual revenue: about `$84.4M` and employee count in the `201-500` range.
+- Datanyze surfaced a much smaller estimate for the U.S.-layer / OMNi-BiOTiC business presence of about `$3.7M` revenue and about `22` employees.
 - These should be treated as directory estimates, not audited financials.
+
+## U.S. Story
+
+- The U.S. "About Us" page says the Kleinfeld family was drawn to the brand after personal health experience and then launched `AllergoSan USA` in 2019.
+- The page connects the U.S. retail/distribution layer back to Anita Frauwallner and the Austrian parent’s 1991 origin story.
+- This makes the mission’s company structure clearly two-layered:
+  1. `Institut AllergoSan` as the Austrian parent and R&D center
+  2. `AllergoSan USA / OMNi-BiOTiC USA` as the family-led U.S. commercial layer
 
 ## Notes
 
 - The official site language emphasizes microbiome research, gut health, and preventive medicine.
 - For a mission-level synthesis, treat U.S. leadership and the Austrian parent as related but distinct layers of the same commercial ecosystem.
+- The strongest official U.S. company source is now `https://omnibioticlife.com/pages/about-us`, which is materially better than relying only on press or summary pages.

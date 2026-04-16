@@ -10,19 +10,21 @@ Drop quick captures here. Promote active mission work into `missions/MISSION-NNN
 
 ## Starter instructions
 
-_Add links to vault notes or bullets for onboarding (to be filled)._
+- [[coverage|Mission coverage tracker]]
 
 ## Mission Index
 
 - [[MISSION-001-stemregen-deep-dive|MISSION-001: STEMREGEN / Kalyagen]]
 - [[MISSION-002-omni-biotics-deep-dive|MISSION-002: OMNi-BiOTiC]]
+- [[MISSION-003-eng3-nanovi-deep-dive|MISSION-003: Eng3 / NanoVi]]
+- [[MISSION-006-trudiagnostic-deep-dive|MISSION-006: TruDiagnostic]]
 
 ## External content (outside this vault)
 
 Absolute paths to related trees on disk (edit to match your machine):
 
-| Label | Path |
-|-------|------|
-| Research repo root | `C:\Users\Pinda\Proyectos\humanupgradeapp\human_upgrade_research` |
-| Episode seeds | `C:\Users\Pinda\Proyectos\humanupgradeapp\human_upgrade_research\human_upgrade_seeds` |
-| Markdown output / Firecrawl outputs | _add path_ |
+| Label                               | Path                                                                                   |
+| ----------------------------------- | -------------------------------------------------------------------------------------- |
+| Research repo root                  | `C:\Users\Pinda\Proyectos\humanupgradeapp\human_upgrade_research`                      |
+| Episode seeds                       | `C:\Users\Pinda\Proyectos\humanupgradeapp\curated_content\human_upgrade\episode-seeds` |
+| Markdown output / Firecrawl outputs | _add path_                                                                             |

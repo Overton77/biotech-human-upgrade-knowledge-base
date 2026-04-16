@@ -22,11 +22,18 @@ Institut AllergoSan is the Austrian parent organization behind the OMNi-BiOTiC e
 - Focused on probiotics, prebiotics, plant extracts, and minerals
 - Operates as a research and development center with international collaborations
 - Active in approximately 40 countries
+- Parent R&D and brand-development center behind the OMNi-BiOTiC ecosystem
 
 ## Leadership
 
 - Anita Frauwallner
 - Bernd Assinger
+
+## Business Context
+
+- The company presents itself as a long-running microbiome research organization rather than a simple supplement marketer.
+- Public revenue is not disclosed on official pages.
+- Third-party directory estimates vary widely, so financial figures should remain clearly labeled as non-audited estimates.
 
 ## Research Positioning
 
@@ -38,6 +45,7 @@ Institut AllergoSan is the Austrian parent organization behind the OMNi-BiOTiC e
 
 - [[company-foundations]]
 - [[research-hub]]
+- [[allergo-san-usa]]
 - [[omni-biotics-synthesis]]
 
 ## Sources
